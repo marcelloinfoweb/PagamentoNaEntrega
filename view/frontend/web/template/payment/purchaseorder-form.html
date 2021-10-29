@@ -37,7 +37,7 @@
                                 'data-container': getCode() + '-troco',
                                 'data-validate': JSON.stringify({'required':true})
                             },
-                            valueUpdate: 'keyup' "/>
+                            valueUpdate: 'keyup'"/>
                 </div>
             </div>
         </fieldset>
@@ -69,11 +69,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    debugger
-        document.getElementById('funarbe_pagamento_na_entrega_metodo').addEventListener('change', function () {
-            document.getElementById('troco').style.display = this.value === 'dinheiro' ? 'block' : 'none';
-        });
-
-</script>

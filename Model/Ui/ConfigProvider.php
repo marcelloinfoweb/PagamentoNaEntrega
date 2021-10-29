@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Funarbe\PagamentoNaEntrega\Model\Ui;
 
 use Magento\Checkout\Model\ConfigProviderInterface;
 
 /**
- *
+ * ConfigProvider
  */
 abstract class ConfigProvider implements ConfigProviderInterface
 {
