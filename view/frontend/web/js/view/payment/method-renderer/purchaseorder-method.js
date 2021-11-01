@@ -32,8 +32,8 @@ define([
                 return {
                     'method': this.item.method,
                     'additional_data': {
-                        'troco': $('#cashondelivery_troco').val(),
-                        'metodo': $('#cashondelivery_metodo').val()
+                        'troco': $('#funarbe_pagamento_na_entrega_troco').val(),
+                        'metodo': $('#funarbe_pagamento_na_entrega_metodo').val()
                     }
                 };
             },

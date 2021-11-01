@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Funarbe\PagamentoNaEntrega\Model\Ui;
+namespace Funarbe\PagamentoNaEntrega\Model;
 
 use Magento\Checkout\Model\ConfigProviderInterface;
 

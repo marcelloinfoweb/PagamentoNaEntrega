@@ -2,6 +2,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="payment_method_assign_data_funarbe_pagamento_na_entrega">
-        <observer name="save_codform_infos" instance="Funarbe\PagamentoNaEntrega\Observer\SaveCodInfo"/>
+        <observer name="funarbe_pagamento_na_entrega_data_assign" instance="Funarbe\PagamentoNaEntrega\Observer\DataAssignObserver"/>
     </event>
 </config>

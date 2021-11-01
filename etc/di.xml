@@ -4,7 +4,7 @@
     <!-- Payment Method Facade configuration -->
     <virtualType name="PurchaseOrderPaymentFacade" type="Magento\Payment\Model\Method\Adapter">
         <arguments>
-            <argument name="code" xsi:type="const">Funarbe\PagamentoNaEntrega\Model\Ui\ConfigProvider::CODE
+            <argument name="code" xsi:type="const">Funarbe\PagamentoNaEntrega\Model\ConfigProvider::CODE
             </argument>
             <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
             <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\Info</argument>
@@ -16,7 +16,7 @@
     <!-- Configuration reader -->
     <type name="Magento\Payment\Gateway\Config\Config">
         <arguments>
-            <argument name="methodCode" xsi:type="const">Funarbe\PagamentoNaEntrega\Model\Ui\ConfigProvider::CODE
+            <argument name="methodCode" xsi:type="const">Funarbe\PagamentoNaEntrega\Model\ConfigProvider::CODE
             </argument>
         </arguments>
     </type>

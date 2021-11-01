@@ -26,11 +26,11 @@
 
                 <div id="troco" class="control" style="display: none;">
                     <label data-bind="attr: {for: getCode() + '_troco'}" class="label">
-                        <span>Precisa de troco?</span>
+                        <span>Precisa de troco para quanto?</span>
                     </label>
 
-                    <input data-validate="{'required-entry':true}" type="text" name="payment[troco]" class="input-text"
-                           value="" data-bind="
+                    <input data-validate="{'required-entry':true}" type="text" name="funarbe_pagamento_na_entrega_troco"
+                           class="input-text" value="" data-bind="
                             attr: {
                                 id: getCode() + '_troco',
                                 title: $t('Precisa de troco?'),
