@@ -1,10 +1,6 @@
 /*browser:true*/
 /*global define*/
-define([
-        'ko',
-        'Magento_Checkout/js/view/payment/default',
-        'jquery'
-    ],
+define(['ko', 'Magento_Checkout/js/view/payment/default', 'jquery'],
     function (ko, Component, $) {
         'use strict';
 
@@ -37,6 +33,7 @@ define([
                     }
                 };
             },
+
             /**
              * Get value of instruction field.
              * @returns {String}
@@ -49,9 +46,7 @@ define([
                     new codOption('Dinheiro', 'dinheiro'),
                     new codOption('Cartão Crédito/Débito', 'cartao')
                 ]);
-
             },
-
         });
     }
 );
