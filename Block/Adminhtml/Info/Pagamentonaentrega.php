@@ -40,16 +40,18 @@ class Pagamentonaentrega extends \Magento\Backend\Block\Template
         $order = $objectManager->create(Order::class)
             ->load($this->getRequest()->getParam('order_id'));
 
-        $additionalInformation = $order->getPayment()->getAdditionalInformation();
+        if (isset($order->getPayment()->getAdditionalInformation()['metodo'])) {
 
-        if ($additionalInformation['metodo'] === 'cartao') {
-            return "Cartão de Crédito";
-        }
+            $additionalInformation = $order->getPayment()->getAdditionalInformation();
 
-        if ($additionalInformation['metodo'] === 'dinheiro') {
-            $troco = $this->priceHelper->currency($additionalInformation['troco'], true, false);
+            if ($additionalInformation['metodo'] === 'cartao') {
+                return "Cartão de Crédito";
+            }
 
-            return "Dinheiro, troco para $troco";
+            if ($additionalInformation['metodo'] === 'dinheiro') {
+                $troco = $this->priceHelper->currency($additionalInformation['troco'], true, false);
+                return "Dinheiro, troco para $troco";
+            }
         }
     }
 }
