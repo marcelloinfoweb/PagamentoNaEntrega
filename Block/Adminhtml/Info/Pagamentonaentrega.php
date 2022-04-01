@@ -54,6 +54,9 @@ class Pagamentonaentrega extends \Magento\Backend\Block\Template
                 $troco = $this->priceHelper->currency($additionalInformation['troco'], true, false);
                 return "Dinheiro, troco para $troco";
             }
+            if ($additionalInformation['metodo'] === 'cartao') {
+                return "Cartão de Crédito/Débito";
+            }
         }
     }
 }
