@@ -44,10 +44,12 @@ class Pagamentonaentrega extends \Magento\Backend\Block\Template
 
             $additionalInformation = $order->getPayment()->getAdditionalInformation();
 
-            if ($additionalInformation['metodo'] === 'cartao') {
+            if ($additionalInformation['metodo'] === 'cartao-credito') {
                 return "Cartão de Crédito";
             }
-
+            if ($additionalInformation['metodo'] === 'cartao-debito') {
+                return "Cartão de Dédito";
+            }
             if ($additionalInformation['metodo'] === 'dinheiro') {
                 $troco = $this->priceHelper->currency($additionalInformation['troco'], true, false);
                 return "Dinheiro, troco para $troco";

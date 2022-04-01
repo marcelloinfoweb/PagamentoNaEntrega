@@ -16,7 +16,7 @@ class DataAssignObserver extends AbstractDataAssignObserver
     public const METODO = 'metodo';
 
     /**
-     * @var array
+     * @var array|string[]
      */
     protected array $additionalInformationList = [self::TROCO, self::METODO];
 
@@ -34,7 +34,7 @@ class DataAssignObserver extends AbstractDataAssignObserver
      * @param Observer $observer
      * @return void
      */
-    public function execute(Observer $observer)
+    public function execute(Observer $observer): void
     {
         $data = $this->readDataArgument($observer);
         $additionalData = $data->getData(PaymentInterface::KEY_ADDITIONAL_DATA);
@@ -48,7 +48,8 @@ class DataAssignObserver extends AbstractDataAssignObserver
             if (isset($additionalData[$additionalInformationKey])) {
                 $paymentInfo->setAdditionalInformation(
                     $additionalInformationKey,
-                    $additionalData[$additionalInformationKey]);
+                    $additionalData[$additionalInformationKey]
+                );
             }
         }
     }

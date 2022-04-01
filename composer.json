@@ -13,8 +13,7 @@
         "magento/module-payment": "100.1.*",
         "magento/module-checkout": "100.1.*",
         "magento/module-sales": "100.1.*"
-    }
-    ,
+    },
     "require-dev": {
         "roave/security-advisories": "dev-latest"
     }
