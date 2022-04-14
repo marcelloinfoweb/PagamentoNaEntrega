@@ -1,46 +1,54 @@
 <div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
     <div class="payment-method-title field choice">
-        <input type="radio" name="payment[method]" class="radio"
-               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
-        <label data-bind="attr: {'for': getCode()}" class="label">
-            <span data-bind="text: getTitle()"></span>
-        </label>
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+        <label data-bind="attr: {'for': getCode()}" class="label"><span data-bind="text: getTitle()"></span></label>
     </div>
     <div class="payment-method-content">
         <p data-bind="html: getInstructions()"></p>
-        <fieldset data-bind="attr: {class: 'fieldset payment items ' + getCode(), id: 'payment_form_' + getCode()}">
+        <form class="form" data-bind="attr: {id: getCode() + '-form'}" method="post" action="#">
+            <fieldset data-bind="attr: {class: 'fieldset payment items ' + getCode(), id: 'payment_form_' + getCode()}">
 
-            <div class="field _required">
-                <label data-bind="attr: {for: getCode() + '_troco'}" class="label">
-                    <span>Método de Pagamento</span>
-                </label>
-                <div class="control" style="padding-bottom: 10px">
-                    <select data-validate="{'required-entry':true}" data-bind="
-                        attr: {id: getCode() + '_metodo','data-validate': JSON.stringify({'required':true})},
-                        options: optionsList(),
-                        optionsText: 'name',
-                        optionsValue:'id',
-                        optionsCaption: 'Opções...'">
-                    </select>
-                </div>
-
-                <div id="troco" class="control" style="display: none;">
+                <div class="field _required">
                     <label data-bind="attr: {for: getCode() + '_troco'}" class="label">
-                        <span>Precisa de troco para quanto?</span>
+                        <span>Método de Pagamento</span>
                     </label>
 
-                    <input data-validate="{'required-entry':true}" type="text" name="funarbe_pagamento_na_entrega_troco"
-                           class="input-text" value="" data-bind="
-                            attr: {
-                                id: getCode() + '_troco',
-                                title: $t('Precisa de troco?'),
-                                'data-container': getCode() + '-troco',
-                                'data-validate': JSON.stringify({'required':true})
-                            },
-                            valueUpdate: 'keyup'"/>
+                    <div class="control">
+
+                        <select class="field required" data-validate="{'validate-select':true}"
+                                data-bind="attr: {id: getCode() + '_metodo',}" id="funarbe_pagamento_na_entrega_metodo">
+                            <option value="none" disabled selected>-- Selecione uma opção --</option>
+                            <option value="dinheiro">Dinheiro</option>
+                            <option value="cartao-credito">Cartão Crédito</option>
+                            <option value="cartao-debito">Cartão Débito</option>
+                        </select>
+
+                    </div>
+
+                    <div id="troco" class="control" style="display: none;">
+                        <label data-bind="attr: {for: getCode() + '_troco'}" class="label">
+                            <span>Precisa de troco para quanto?</span>
+                        </label>
+
+
+                        <input type="text" name="funarbe_pagamento_na_entrega_troco"
+                               class="input-text field required" value="" data-validate="{'required-entry':true}"
+                               data-bind="
+                                attr: {
+                                    id: getCode() + '_troco',
+                                    title: $t('Precisa de troco?'),
+                                    'data-container': getCode() + '-troco',
+                                    'data-validate': JSON.stringify({'required':true})
+                                },
+                                valueUpdate: 'keyup'
+                            "/>
+                    </div>
                 </div>
-            </div>
-        </fieldset>
+            </fieldset>
+        </form>
         <!-- ko foreach: getRegion('messages') -->
         <!-- ko template: getTemplate() --><!-- /ko -->
         <!--/ko-->
@@ -60,9 +68,9 @@
                 <button class="action primary checkout" type="submit" data-bind="
                         click: placeOrder,
                         attr: {title: $t('Place Order')},
-                        enable: (getCode() == isChecked()),
-                        css: {disabled: !isPlaceOrderActionAllowed()}"
-                        data-role="review-save">
+                        css: {disabled: !isPlaceOrderActionAllowed()},
+                        enable: (getCode() == isChecked())"
+                        disabled>
                     <span data-bind="i18n: 'Place Order'"></span>
                 </button>
             </div>

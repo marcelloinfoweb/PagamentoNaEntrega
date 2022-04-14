@@ -1,13 +1,14 @@
 /*browser:true*/
 /*global define*/
-define(['ko', 'Magento_Checkout/js/view/payment/default', 'jquery'], function (ko, Component, $) {
+define([
+    'ko',
+    'Magento_Checkout/js/view/payment/default',
+    'jquery', 'Magento_Ui/js/model/messageList',
+    'mage/validation'
+], function (ko, Component, $) {
     'use strict';
 
     const optionsList = ko.observableArray();
-    const codOption = function (name, id) {
-        this.name = name;
-        this.id = id;
-    };
 
     $(document).on('change', "#funarbe_pagamento_na_entrega_metodo", function () {
         document.getElementById('troco').style.display = this.value === 'dinheiro' ? 'block' : 'none';
@@ -16,11 +17,17 @@ define(['ko', 'Magento_Checkout/js/view/payment/default', 'jquery'], function (k
     return Component.extend({
         defaults: {
             template: 'Funarbe_PagamentoNaEntrega/payment/purchaseorder-form'
-        }, initialize: function () {
+        },
+        validate: function () {
+            var $form = $('#' + this.getCode() + '-form');
+            return $form.validation() && $form.validation('isValid');
+        },
+        initialize: function () {
             this._super();
-            this.populateOptionsList();
             return this;
-        }, optionsList: optionsList, getData: function () {
+        },
+        optionsList: optionsList,
+        getData: function () {
             return {
                 'method': this.item.method, 'additional_data': {
                     'troco': $('#funarbe_pagamento_na_entrega_troco').val(),
@@ -35,12 +42,6 @@ define(['ko', 'Magento_Checkout/js/view/payment/default', 'jquery'], function (k
          */
         getInstructions: function () {
             return window.checkoutConfig.payment[this.item.method];
-        }, populateOptionsList: function () {
-            this.optionsList([
-                new codOption('Dinheiro', 'dinheiro'),
-                new codOption('Cartão Crédito', 'cartao-credito'),
-                new codOption('Cartão Débito', 'cartao-debito')
-            ]);
-        },
+        }
     });
 });
